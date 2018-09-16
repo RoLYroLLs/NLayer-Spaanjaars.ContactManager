@@ -11,7 +11,7 @@ namespace Spaanjaars.ContactManager45.Repositories.EF
   /// Serves as a generic base class for concrete repositories to support basic CRUD oprations on data in the system.
   /// </summary>
   /// <typeparam name="T">The type of entity this repository works with. Must be a class inheriting DomainEntity.</typeparam>
-  public abstract class Repository<T> : IRepository<T, int>, IDisposable where T : DomainEntity<int>
+  public abstract class Repository<T, K> : IRepository<T, int>, IDisposable where T : DomainEntity<int> where K : DbContext
   {
     /// <summary>
     /// Finds an item by its unique ID.
@@ -31,7 +31,7 @@ namespace Spaanjaars.ContactManager45.Repositories.EF
     /// <returns>An IQueryable of the requested type T.</returns>
     public virtual IQueryable<T> FindAll(params Expression<Func<T, object>>[] includeProperties)
     {
-      IQueryable<T> items = DataContextFactory.GetDataContext().Set<T>();
+      IQueryable<T> items = DataContextFactory<K>.GetDataContext().Set<T>();
 
       if (includeProperties != null)
       {
@@ -51,7 +51,7 @@ namespace Spaanjaars.ContactManager45.Repositories.EF
     /// <returns>An IEnumerable of the requested type T.</returns>
     public IEnumerable<T> FindAll(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties)
     {
-      IQueryable<T> items = DataContextFactory.GetDataContext().Set<T>();
+      IQueryable<T> items = DataContextFactory<K>.GetDataContext().Set<T>();
       if (includeProperties != null)
       {
         foreach (var includeProperty in includeProperties)
@@ -68,7 +68,7 @@ namespace Spaanjaars.ContactManager45.Repositories.EF
     /// <param name="entity">The entity that should be added.</param>
     public virtual void Add(T entity)
     {
-      DataContextFactory.GetDataContext().Set<T>().Add(entity);
+      DataContextFactory<K>.GetDataContext().Set<T>().Add(entity);
     }
 
     /// <summary>
@@ -77,7 +77,7 @@ namespace Spaanjaars.ContactManager45.Repositories.EF
     /// <param name="entity">The entity that should be removed.</param>
     public virtual void Remove(T entity)
     {
-      DataContextFactory.GetDataContext().Set<T>().Remove(entity);
+      DataContextFactory<K>.GetDataContext().Set<T>().Remove(entity);
     }
 
     /// <summary>
@@ -94,9 +94,9 @@ namespace Spaanjaars.ContactManager45.Repositories.EF
     /// </summary>
     public void Dispose()
     {
-      if (DataContextFactory.GetDataContext() != null)
+      if (DataContextFactory<K>.GetDataContext() != null)
       {
-        DataContextFactory.GetDataContext().Dispose();
+        DataContextFactory<K>.GetDataContext().Dispose();
       }
     }
   }

@@ -1,11 +1,12 @@
-﻿using Spaanjaars.Infrastructure;
+﻿using System.Data.Entity;
+using Spaanjaars.Infrastructure;
 
 namespace Spaanjaars.ContactManager45.Repositories.EF
 {
   /// <summary>
   /// Defines a Unit of Work using an EF DbContext under the hood.
   /// </summary>
-  public class EFUnitOfWork : IUnitOfWork
+  public class EFUnitOfWork<T> : IUnitOfWork where T : DbContext
   {
     /// <summary>
     /// Initializes a new instance of the EFUnitOfWork class.
@@ -15,7 +16,7 @@ namespace Spaanjaars.ContactManager45.Repositories.EF
     {
       if (forceNewContext)
       {
-        DataContextFactory.Clear();
+        DataContextFactory<T>.Clear();
       }
     }
 
@@ -24,7 +25,7 @@ namespace Spaanjaars.ContactManager45.Repositories.EF
     /// </summary>
     public void Dispose()
     {
-      DataContextFactory.GetDataContext().SaveChanges();
+      DataContextFactory<T>.GetDataContext().SaveChanges();
     }
 
     /// <summary>
@@ -33,10 +34,10 @@ namespace Spaanjaars.ContactManager45.Repositories.EF
     /// <param name="resetAfterCommit">When true, clears out the data context afterwards.</param>
   public void Commit(bool resetAfterCommit)
   {
-    DataContextFactory.GetDataContext().SaveChanges();
+    DataContextFactory<T>.GetDataContext().SaveChanges();
     if (resetAfterCommit)
     {
-      DataContextFactory.Clear();
+      DataContextFactory<T>.Clear();
     }
   }
 
@@ -45,7 +46,7 @@ namespace Spaanjaars.ContactManager45.Repositories.EF
   /// </summary>
   public void Undo()
   {
-    DataContextFactory.Clear();
+    DataContextFactory<T>.Clear();
   }
   }
 }
