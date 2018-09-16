@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Spaanjaars.ContactManager45.Repositories.EF.Configuration.EmailAddressConfiguration">
+    <Position X="5.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\EmailAddressConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spaanjaars.ContactManager45.Repositories.EF.Configuration.PersonConfiguration">
+    <Position X="2.75" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\PersonConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spaanjaars.ContactManager45.Repositories.EF.Configuration.PhoneNumberConfiguration">
+    <Position X="2.75" Y="2" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\PhoneNumberConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spaanjaars.ContactManager45.Repositories.EF.ContactManagerContext">
+    <Position X="5.5" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAIAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ContactManagerContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spaanjaars.ContactManager45.Repositories.EF.ContactManagerContextInitializer">
+    <Position X="0.5" Y="6.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>ContactManagerContextInitializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spaanjaars.ContactManager45.Repositories.EF.DataContextFactory">
+    <Position X="4.25" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACABAAAA=</HashCode>
+      <FileName>DataContextFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spaanjaars.ContactManager45.Repositories.EF.EFUnitOfWork" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EFUnitOfWork.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Spaanjaars.ContactManager45.Repositories.EF.EFUnitOfWorkFactory" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>EFUnitOfWorkFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Spaanjaars.ContactManager45.Repositories.EF.MyDropCreateDatabaseIfModelChanges">
+    <Position X="3.25" Y="6.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>MyDropCreateDatabaseIfModelChanges.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spaanjaars.ContactManager45.Repositories.EF.PeopleRepository">
+    <Position X="0.5" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\PeopleRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Spaanjaars.ContactManager45.Repositories.EF.Repository&lt;T&gt;">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAACAAAAAAAAAQBAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\Repository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

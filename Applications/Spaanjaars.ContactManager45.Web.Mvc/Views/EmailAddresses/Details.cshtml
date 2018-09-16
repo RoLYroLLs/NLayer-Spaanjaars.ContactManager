@@ -1,0 +1,14 @@
+@model Spaanjaars.ContactManager45.Web.Mvc.Models.DisplayEmailAddress
+@{
+  ViewBag.Title = "Details";
+}
+<h2>@ViewBag.Title</h2>
+<fieldset>
+  <legend>Person</legend>
+  @Html.Partial("_Details", Model)
+</fieldset>
+
+<br />
+<br />
+
+@Html.ActionLink("Back to list", "List", new { Model.PersonId })

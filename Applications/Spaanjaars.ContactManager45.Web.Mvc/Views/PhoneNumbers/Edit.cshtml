@@ -1,0 +1,14 @@
+@model Spaanjaars.ContactManager45.Web.Mvc.Models.CreateAndEditPhoneNumber
+@{
+  ViewBag.Title = "Edit phone number";
+}
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm())
+{
+  @Html.ValidationSummary(true)
+  @Html.Partial("_CreateOrEdit", Model)
+  <p>
+    <input id="edit" type="submit" value="Save" />
+    @Html.ActionLink("Back to list", "List", new { ViewBag.PersonId })
+  </p>
+}

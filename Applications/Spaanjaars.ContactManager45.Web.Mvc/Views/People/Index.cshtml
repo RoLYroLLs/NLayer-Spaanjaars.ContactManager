@@ -1,0 +1,34 @@
+﻿@using Spaanjaars.ContactManager45.Model;
+@model Spaanjaars.ContactManager45.Web.Mvc.Models.PagerModel<Spaanjaars.ContactManager45.Web.Mvc.Models.DisplayPerson>
+@{
+  ViewBag.Title = "Contact People";
+}
+@if (Model.Data.Any())
+{
+  var grid = new WebGrid(null, defaultSort: "FirstName", columnNames: new[] { "Id", "FullName", "DateOfBirth", "Type" }, rowsPerPage: Model.PageSize);
+  grid.Bind(Model.Data, rowCount: Model.TotalRows, autoSortAndPage: false);
+
+  @grid.GetHtml(columns: grid.Columns(
+   grid.Column("Id"),
+   grid.Column(header: "Full name", columnName: "FullName", format: (item) => Html.ActionLink(((string)item.FullName), "Details", new { item.id })),
+   grid.Column("DateOfBirth", header: "Date of Birth", format: (item) => item.DateOfBirth.ToString("d")),
+   grid.Column("Type", canSort: false),
+   grid.Column(header: "Addresses", format: item => new HtmlString(
+                Html.ActionLink("Home", "Edit", "Addresses", new { personId = item.Id, contactType = (int)ContactType.Personal }, null).ToString() + " | " +
+                Html.ActionLink("Work", "Edit", "Addresses", new { personId = item.Id, contactType = (int)ContactType.Business }, null).ToString())
+   ),
+   grid.Column(format: (item) => Html.ActionLink("E-mail addresses", "List", "EmailAddresses", new { personId = item.id }, null)),
+   grid.Column(format: (item) => Html.ActionLink("Phone numbers", "List", "PhoneNumbers", new { personId = item.id }, null)),
+   grid.Column(format: (item) => Html.ActionLink("Edit", "Edit", new { item.id })),
+   grid.Column(format: (item) => Html.ActionLink("Delete", "Delete", new { item.id }))
+  )
+ )
+}
+else
+{
+  <p>No contact people found.</p>
+}
+<p>
+  @Html.ActionLink("Create new contact person", "Create")
+</p>
+

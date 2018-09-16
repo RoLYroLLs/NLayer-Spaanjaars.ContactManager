@@ -1,0 +1,13 @@
+﻿@model DateTime?
+@if (Model.HasValue)
+{
+  @Html.TextBox("", string.Format("{0:yyyy/MM/dd}", Model.Value), new { @class = "textbox", @style = "width:100px;" })
+}
+else
+{
+  @Html.TextBox("", "", new { @class = "textbox", @style = "width:100px;" })
+}
+@{
+  string name = ViewData.TemplateInfo.HtmlFieldPrefix;
+  string id = name.Replace(".", "_");
+}

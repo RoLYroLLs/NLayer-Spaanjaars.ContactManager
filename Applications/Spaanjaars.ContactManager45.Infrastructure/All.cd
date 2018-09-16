@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Spaanjaars.Infrastructure.DataContextStorage.DataContextStorageFactory&lt;T&gt;">
+    <Position X="10" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAACAAA=</HashCode>
+      <FileName>DataContextStorage\DataContextStorageFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spaanjaars.Infrastructure.DataContextStorage.HttpDataContextStorageContainer&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="2.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACQBAAAA=</HashCode>
+      <FileName>DataContextStorage\HttpDataContextStorageContainer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Spaanjaars.Infrastructure.DataContextStorage.ThreadDataContextStorageContainer&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="10" Y="2.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAQAAAAAACQBAAAA=</HashCode>
+      <FileName>DataContextStorage\ThreadDataContextStorageContainer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Spaanjaars.Infrastructure.ValueObject&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAACAAAAAgAAAAAAAAAAAAIAAAAAAAAAAAiA=</HashCode>
+      <FileName>ValueObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Spaanjaars.Infrastructure.ModelValidationException">
+    <Position X="0.5" Y="7" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAIAAAAAA=</HashCode>
+      <FileName>ModelValidationException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spaanjaars.Infrastructure.DomainEntity&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAACAAAAAgAAAAAAAAAAAAIAAAAAAAAAIAiA=</HashCode>
+      <FileName>DomainEntity.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="Spaanjaars.Infrastructure.DataContextStorage.IDataContextStorageContainer&lt;T&gt;" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACQBAAAA=</HashCode>
+      <FileName>DataContextStorage\IDataContextStorageContainer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Spaanjaars.Infrastructure.IRepository&lt;T, K&gt;">
+    <Position X="0.5" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAQBAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Spaanjaars.Infrastructure.IUnitOfWork">
+    <Position X="2.75" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IUnitOfWork.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Spaanjaars.Infrastructure.IUnitOfWorkFactory">
+    <Position X="13.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>IUnitOfWorkFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

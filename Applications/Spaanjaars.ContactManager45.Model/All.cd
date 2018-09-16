@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Spaanjaars.ContactManager45.Model.Address">
+    <Position X="6.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAIAAEAAAAAAAIAAAABAAIAAAAAAAA=</HashCode>
+      <FileName>Address.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Spaanjaars.ContactManager45.Model.EmailAddresses" Collapsed="true">
+    <Position X="0.5" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collections\EmailAddresses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spaanjaars.ContactManager45.Model.People" Collapsed="true">
+    <Position X="2.75" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collections\People.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spaanjaars.ContactManager45.Model.PhoneNumbers" Collapsed="true">
+    <Position X="0.5" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collections\PhoneNumbers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spaanjaars.ContactManager45.Model.EmailAddress">
+    <Position X="6.75" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACIAACAAAAAAAEAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>EmailAddress.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spaanjaars.ContactManager45.Model.Person">
+    <Position X="4.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AIIAAEAACACAAAAAAAAAQAQAAgAQAAAAAQAEAAAAAAg=</HashCode>
+      <FileName>Person.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Spaanjaars.ContactManager45.Model.PhoneNumber">
+    <Position X="8.75" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAEEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PhoneNumber.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spaanjaars.ContactManager45.Model.Collections.CollectionBase&lt;T&gt;" Collapsed="true">
+    <Position X="2" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Collections\CollectionBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Spaanjaars.ContactManager45.Model.Event">
+    <Position X="8.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAACAAEAEAAAAAAAgAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Event.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Spaanjaars.ContactManager45.Model.Repositories.IPeopleRepository" Collapsed="true">
+    <Position X="4.75" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\IPeopleRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Spaanjaars.ContactManager45.Model.ContactType" Collapsed="true">
+    <Position X="4.75" Y="5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAABAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Enums\ContactType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Spaanjaars.ContactManager45.Model.PersonType" Collapsed="true">
+    <Position X="4.75" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAACAAAAAEABAA=</HashCode>
+      <FileName>Enums\PersonType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

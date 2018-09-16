@@ -1,0 +1,19 @@
+@model Spaanjaars.ContactManager45.Web.Mvc.Models.DisplayPhoneNumber
+@{
+  ViewBag.Title = "Delete phone number?";
+}
+<h2>@ViewBag.Title</h2>
+<p>Are you sure you want to delete this phone number?</p>
+  @Html.Partial("_Details", Model)
+
+  @Html.Hidden("PersonId", (int)ViewBag.PersonId)
+
+@using (Html.BeginForm())
+{
+  <p>
+    <input type="submit" value="Delete" />
+    @Html.ActionLink("Cancel", "List", new { ViewBag.PersonId })
+  </p>
+}
+
+
