@@ -1,18 +1,19 @@
-﻿using Spaanjaars.Infrastructure.DataContextStorage;
+﻿using System.Data.Entity;
+using Spaanjaars.Infrastructure.DataContextStorage;
 
 namespace Spaanjaars.ContactManager45.Repositories.EF
 {
   /// <summary>
   /// Manages instances of the ContactManagerContext and stores them in an appropriate storage container.
   /// </summary>
-  public static class DataContextFactory
+  public static class DataContextFactory<T> where T : DbContext, new()
   {
     /// <summary>
     /// Clears out the current ContactManagerContext.
     /// </summary>
     public static void Clear()
     {
-      var dataContextStorageContainer = DataContextStorageFactory<ContactManagerContext>.CreateStorageContainer();
+      var dataContextStorageContainer = DataContextStorageFactory<T>.CreateStorageContainer();
       dataContextStorageContainer.Clear();
     }
 
@@ -21,13 +22,13 @@ namespace Spaanjaars.ContactManager45.Repositories.EF
     /// creates a new instance and stores that in a container.
     /// </summary>
     /// <returns>An instance of ContactManagerContext.</returns>
-    public static ContactManagerContext GetDataContext()
+    public static T GetDataContext()
     {
-      var dataContextStorageContainer = DataContextStorageFactory<ContactManagerContext>.CreateStorageContainer();
+      var dataContextStorageContainer = DataContextStorageFactory<T>.CreateStorageContainer();
       var contactManagerContext = dataContextStorageContainer.GetDataContext();
       if (contactManagerContext == null)
       {
-        contactManagerContext = new ContactManagerContext();
+        contactManagerContext = new T();
         dataContextStorageContainer.Store(contactManagerContext);
       }
       return contactManagerContext;

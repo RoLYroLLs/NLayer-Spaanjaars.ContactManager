@@ -8,7 +8,12 @@ namespace Spaanjaars.Infrastructure.DataContextStorage
   /// <typeparam name="T">The type of object to store.</typeparam>
   public class HttpDataContextStorageContainer<T> : IDataContextStorageContainer<T> where T : class
   {
-    private const string DataContextKey = "DataContext";
+    private string dataContextKey;
+    
+    public HttpDataContextStorageContainer()
+    {
+      dataContextKey = "context" + typeof(T);
+    }
 
     /// <summary>
     /// Returns an object from the container when it exists. Returns null otherwise.
@@ -17,9 +22,9 @@ namespace Spaanjaars.Infrastructure.DataContextStorage
     public T GetDataContext()
     {
       T objectContext = null;
-      if (HttpContext.Current.Items.Contains(DataContextKey))
+      if (HttpContext.Current.Items.Contains(dataContextKey))
       {
-        objectContext = (T)HttpContext.Current.Items[DataContextKey];
+        objectContext = (T)HttpContext.Current.Items[dataContextKey];
       }
       return objectContext;
     }
@@ -29,9 +34,9 @@ namespace Spaanjaars.Infrastructure.DataContextStorage
     /// </summary>
     public void Clear()
     {
-      if (HttpContext.Current.Items.Contains(DataContextKey))
+      if (HttpContext.Current.Items.Contains(dataContextKey))
       {
-        HttpContext.Current.Items[DataContextKey] = null;
+        HttpContext.Current.Items[dataContextKey] = null;
       }
     }
 
@@ -41,13 +46,13 @@ namespace Spaanjaars.Infrastructure.DataContextStorage
     /// <param name="objectContext">The object to store.</param>
     public void Store(T objectContext)
     {
-      if (HttpContext.Current.Items.Contains(DataContextKey))
+      if (HttpContext.Current.Items.Contains(dataContextKey))
       {
-        HttpContext.Current.Items[DataContextKey] = objectContext;
+        HttpContext.Current.Items[dataContextKey] = objectContext;
       }
       else
       {
-        HttpContext.Current.Items.Add(DataContextKey, objectContext);
+        HttpContext.Current.Items.Add(dataContextKey, objectContext);
       }
     }
   }
