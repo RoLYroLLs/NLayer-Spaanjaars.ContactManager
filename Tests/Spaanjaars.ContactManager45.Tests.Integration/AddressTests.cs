@@ -22,7 +22,7 @@ namespace Spaanjaars.ContactManager45.Tests.Integration
       address = CreateAddress(ContactType.Business);
       person.WorkAddress = address;
 
-      using (new EFUnitOfWorkFactory().Create())
+      using (new EFUnitOfWorkFactory<ContactManagerContext>().Create())
       {
         PeopleRepository peopleRepository = new PeopleRepository();
         peopleRepository.Add(person);

@@ -8,7 +8,7 @@ namespace Spaanjaars.ContactManager45.Repositories.EF
   /// <summary>
   /// A concrete repository to work with people in the system.
   /// </summary>
-  public class PeopleRepository : Repository<Person, ContactManagerContext>, IPeopleRepository
+  public class PeopleRepository : Repository<Person, ContactManagerContext, int>, IPeopleRepository
   {
     /// <summary>
     /// Gets a list of all the people whose last name exactly matches the search string.

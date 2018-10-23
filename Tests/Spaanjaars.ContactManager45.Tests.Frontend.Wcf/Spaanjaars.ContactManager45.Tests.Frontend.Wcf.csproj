@@ -88,6 +88,10 @@
       <Project>{e40b95f4-f50a-4c59-b725-3ed53ec19ace}</Project>
       <Name>Spaanjaars.ContactManager45.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Applications\Spaanjaars.ContactManager45.Repositories.EF\Spaanjaars.ContactManager45.Repositories.EF.csproj">
+      <Project>{8636CEB2-5D00-4147-B8B6-BE98EC32D98B}</Project>
+      <Name>Spaanjaars.ContactManager45.Repositories.EF</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Applications\Spaanjaars.ContactManager45.Web.Wcf\Spaanjaars.ContactManager45.Web.Wcf.csproj">
       <Project>{b79941a0-b24d-4cdf-b2b1-88f84f5fbc76}</Project>
       <Name>Spaanjaars.ContactManager45.Web.Wcf</Name>

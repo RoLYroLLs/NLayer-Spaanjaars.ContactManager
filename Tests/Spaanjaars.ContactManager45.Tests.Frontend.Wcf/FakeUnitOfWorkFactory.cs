@@ -4,16 +4,16 @@ using Spaanjaars.Infrastructure;
 namespace Spaanjaars.ContactManager45.Tests.Frontend.Wcf
 {
   [ExcludeFromCodeCoverage]
-  public class FakeUnitOfWorkFactory : IUnitOfWorkFactory
+  public class FakeUnitOfWorkFactory<T> : IUnitOfWorkFactory<T>
   {
-    public IUnitOfWork Create()
+    public IUnitOfWork<T> Create()
     {
       return Create(false);
     }
 
-    public IUnitOfWork Create(bool forceNew)
+    public IUnitOfWork<T> Create(bool forceNew)
     {
-      return new FakeUnitOfWork();
+      return new FakeUnitOfWork<T>();
     }
   }
 }

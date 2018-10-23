@@ -18,7 +18,7 @@ namespace Spaanjaars.ContactManager45.Tests.Integration
     {
       var person = CreatePerson();
       var repository = new PeopleRepository();
-      using (new EFUnitOfWorkFactory().Create())
+      using (new EFUnitOfWorkFactory<ContactManagerContext>().Create())
       {
         repository.Add(person);
       }
@@ -44,14 +44,14 @@ namespace Spaanjaars.ContactManager45.Tests.Integration
       var person2 = CreatePerson();
       person1.LastName = lastName;
       person2.LastName = lastName;
-      using (new EFUnitOfWorkFactory().Create())
+      using (new EFUnitOfWorkFactory<ContactManagerContext>().Create())
       {
         var repository = new PeopleRepository();
         repository.Add(person1);
         repository.Add(person2);
       }
 
-      using (new EFUnitOfWorkFactory().Create(true))
+      using (new EFUnitOfWorkFactory<ContactManagerContext>().Create(true))
       {
         var repository = new PeopleRepository();
         var peopleWithLastName = repository.FindByLastName(lastName);
@@ -70,14 +70,14 @@ namespace Spaanjaars.ContactManager45.Tests.Integration
       person1.Type = PersonType.Colleague;
       person2.LastName = lastName;
       person2.Type = PersonType.Friend;
-      using (new EFUnitOfWorkFactory().Create())
+      using (new EFUnitOfWorkFactory<ContactManagerContext>().Create())
       {
         var repository = new PeopleRepository();
         repository.Add(person1);
         repository.Add(person2);
       }
 
-      using (new EFUnitOfWorkFactory().Create())
+      using (new EFUnitOfWorkFactory<ContactManagerContext>().Create())
       {
         var repository = new PeopleRepository();
         repository.FindAll(x => x.LastName == lastName).Count().Should().Be(2);
@@ -91,7 +91,7 @@ namespace Spaanjaars.ContactManager45.Tests.Integration
       var person1 = CreatePerson();
       var person2 = CreatePerson();
       var person3 = CreatePerson();
-      using (new EFUnitOfWorkFactory().Create())
+      using (new EFUnitOfWorkFactory<ContactManagerContext>().Create())
       {
         var repository = new PeopleRepository();
         repository.Add(person1);
@@ -99,7 +99,7 @@ namespace Spaanjaars.ContactManager45.Tests.Integration
         repository.Add(person3);
       }
 
-      using (new EFUnitOfWorkFactory().Create())
+      using (new EFUnitOfWorkFactory<ContactManagerContext>().Create())
       {
         var repository = new PeopleRepository();
         var oneAndTwo = repository.FindAll(x => x.Id == person1.Id || x.Id == person2.Id).ToList();
@@ -120,7 +120,7 @@ namespace Spaanjaars.ContactManager45.Tests.Integration
       person1.PhoneNumbers.Add("555-456", ContactType.Business);
       var person2 = CreatePerson();
       var person3 = CreatePerson();
-      using (new EFUnitOfWorkFactory().Create())
+      using (new EFUnitOfWorkFactory<ContactManagerContext>().Create())
       {
         var repository = new PeopleRepository();
         repository.Add(person1);
@@ -128,7 +128,7 @@ namespace Spaanjaars.ContactManager45.Tests.Integration
         repository.Add(person3);
       }
 
-      using (new EFUnitOfWorkFactory().Create(true))
+      using (new EFUnitOfWorkFactory<ContactManagerContext>().Create(true))
       {
         var repository = new PeopleRepository();
         var oneAndTwo = repository.FindAll(x => x.Id == person1.Id || x.Id == person2.Id, x => x.EmailAddresses).ToList();
@@ -152,7 +152,7 @@ namespace Spaanjaars.ContactManager45.Tests.Integration
       person.PhoneNumbers.Add(number1, ContactType.Personal);
       person.PhoneNumbers.Add(number2, ContactType.Personal);
 
-      using (new EFUnitOfWorkFactory().Create())
+      using (new EFUnitOfWorkFactory<ContactManagerContext>().Create())
       {
         var repository = new PeopleRepository();
         repository.Add(person);
@@ -162,7 +162,7 @@ namespace Spaanjaars.ContactManager45.Tests.Integration
       int personId = person.Id;
       personId.Should().BeGreaterThan(0);
       var checkRepository = new PeopleRepository();
-      using (new EFUnitOfWorkFactory().Create(true))
+      using (new EFUnitOfWorkFactory<ContactManagerContext>().Create(true))
       {
         checkRepository.Remove(personId);
       }
@@ -180,7 +180,7 @@ namespace Spaanjaars.ContactManager45.Tests.Integration
       person.PhoneNumbers.Add(number1, ContactType.Personal);
       person.PhoneNumbers.Add(number2, ContactType.Personal);
 
-      using (new EFUnitOfWorkFactory().Create())
+      using (new EFUnitOfWorkFactory<ContactManagerContext>().Create())
       {
         var repository = new PeopleRepository();
         repository.Add(person);
@@ -190,7 +190,7 @@ namespace Spaanjaars.ContactManager45.Tests.Integration
       int personId = person.Id;
       personId.Should().BeGreaterThan(0);
       var checkRepository = new PeopleRepository();
-      using (new EFUnitOfWorkFactory().Create(true))
+      using (new EFUnitOfWorkFactory<ContactManagerContext>().Create(true))
       {
         var checkPerson = checkRepository.FindById(personId, x => x.PhoneNumbers);
         checkPerson.PhoneNumbers.Clear();

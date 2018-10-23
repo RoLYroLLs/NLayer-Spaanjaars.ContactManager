@@ -26,7 +26,7 @@ namespace Spaanjaars.ContactManager45.Tests.Integration
     public void CanExecuteQueryAgainstDataContext()
     {
       string lastName = Guid.NewGuid().ToString().Substring(0, 25);
-      var context = DataContextFactory.GetDataContext();
+      var context = DataContextFactory<ContactManagerContext>.GetDataContext();
       var person = new Person { FirstName = "Imar", LastName = lastName, DateOfBirth = new DateTime(1971, 8, 9), DateCreated = DateTime.Now, DateModified = DateTime.Now, Type = PersonType.Colleague, HomeAddress = AddressTests.CreateAddress(ContactType.Personal), WorkAddress = AddressTests.CreateAddress(ContactType.Business) };
       context.People.Add(person);
       context.SaveChanges();
@@ -38,7 +38,7 @@ namespace Spaanjaars.ContactManager45.Tests.Integration
     [TestMethod]
     public void ValidationErrorsThrowModelValidationException()
     {
-      var uow = new EFUnitOfWorkFactory().Create();
+      var uow = new EFUnitOfWorkFactory<ContactManagerContext>().Create();
       Action act = () =>
         {
           var repo = new PeopleRepository();

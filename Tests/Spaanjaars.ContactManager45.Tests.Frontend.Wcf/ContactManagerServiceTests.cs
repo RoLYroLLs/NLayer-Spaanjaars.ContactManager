@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Spaanjaars.ContactManager45.Repositories.EF;
 using Spaanjaars.ContactManager45.Web.Wcf;
 
 namespace Spaanjaars.ContactManager45.Tests.Frontend.Wcf
@@ -13,7 +14,7 @@ namespace Spaanjaars.ContactManager45.Tests.Frontend.Wcf
     [TestMethod]
     public void ContactManagerServiceRequiresRepository()
     {
-      Action act = () => new ContactManagerService(null, new FakeUnitOfWorkFactory());
+      Action act = () => new ContactManagerService(null, new FakeUnitOfWorkFactory<ContactManagerContext>());
       act.ShouldThrow<ArgumentNullException>().WithMessage("peopleRepository is null", ComparisonMode.Substring);
     }
 
@@ -27,14 +28,14 @@ namespace Spaanjaars.ContactManager45.Tests.Frontend.Wcf
     [TestMethod]
     public void ContactManagerServiceRequiresRepositoryAndUnitOfWorkFactory()
     {
-      Action act = () => new ContactManagerService(new FakePeopleRepository(), new FakeUnitOfWorkFactory());
+      Action act = () => new ContactManagerService(new FakePeopleRepository(), new FakeUnitOfWorkFactory<ContactManagerContext>());
       act.ShouldNotThrow();
     }
 
     [TestMethod]
     public void GetPersonByIdReturnsCorrectPersonModel()
     {
-      var service = new ContactManagerService(new FakePeopleRepository(), new FakeUnitOfWorkFactory());
+      var service = new ContactManagerService(new FakePeopleRepository(), new FakeUnitOfWorkFactory<ContactManagerContext>());
       PersonModel peron = service.GetPerson(24);
       peron.LastName.Should().Be("Youngest Lastname");
       peron.Id.Should().Be(24);
@@ -43,7 +44,7 @@ namespace Spaanjaars.ContactManager45.Tests.Frontend.Wcf
     [TestMethod]
     public void UnknownIdReturnsNull()
     {
-      var service = new ContactManagerService(new FakePeopleRepository(), new FakeUnitOfWorkFactory());
+      var service = new ContactManagerService(new FakePeopleRepository(), new FakeUnitOfWorkFactory<ContactManagerContext>());
       PersonModel peron = service.GetPerson(-1);
       peron.Should().BeNull();
     }
@@ -52,7 +53,7 @@ namespace Spaanjaars.ContactManager45.Tests.Frontend.Wcf
     public void InsertPersonInsertsValidPerson()
     {
       var fakePeopleRepository = new FakePeopleRepository();
-      var service = new ContactManagerService(fakePeopleRepository, new FakeUnitOfWorkFactory());
+      var service = new ContactManagerService(fakePeopleRepository, new FakeUnitOfWorkFactory<ContactManagerContext>());
       var peronModel = new PersonModel { DateOfBirth = DateTime.Now.AddDays(-1), FirstName = "Imar", LastName = "Spaanjaars" };
       var result = service.InsertPerson(peronModel);
       fakePeopleRepository.InsertedPerson.FirstName.Should().Be("Imar");
@@ -65,7 +66,7 @@ namespace Spaanjaars.ContactManager45.Tests.Frontend.Wcf
     public void InsertPersonRejectsInvalidPerson()
     {
       var fakePeopleRepository = new FakePeopleRepository();
-      var service = new ContactManagerService(fakePeopleRepository, new FakeUnitOfWorkFactory());
+      var service = new ContactManagerService(fakePeopleRepository, new FakeUnitOfWorkFactory<ContactManagerContext>());
       var peronModel = new PersonModel { DateOfBirth = DateTime.Now.AddDays(+1), FirstName = "Imar", LastName = "Spaanjaars" };
       var result = service.InsertPerson(peronModel);
       fakePeopleRepository.InsertedPerson.Should().BeNull();
@@ -77,7 +78,7 @@ namespace Spaanjaars.ContactManager45.Tests.Frontend.Wcf
     public void UpdatePersonUpdatesCorrectPerson()
     {
       var fakePeopleRepository = new FakePeopleRepository();
-      var service = new ContactManagerService(fakePeopleRepository, new FakeUnitOfWorkFactory());
+      var service = new ContactManagerService(fakePeopleRepository, new FakeUnitOfWorkFactory<ContactManagerContext>());
       var peronModel = new PersonModel { Id = 24, DateOfBirth = DateTime.Now.AddDays(-1), FirstName = "New First Name", LastName = "New Last Name" };
       var result = service.UpdatePerson(peronModel);
       fakePeopleRepository.FindById(24).LastName.Should().Be("New Last Name");
@@ -89,7 +90,7 @@ namespace Spaanjaars.ContactManager45.Tests.Frontend.Wcf
     public void UpdatePersonRejectsInvalidPerson()
     {
       var fakePeopleRepository = new FakePeopleRepository();
-      var service = new ContactManagerService(fakePeopleRepository, new FakeUnitOfWorkFactory());
+      var service = new ContactManagerService(fakePeopleRepository, new FakeUnitOfWorkFactory<ContactManagerContext>());
       var peronModel = new PersonModel { Id = 24, DateOfBirth = DateTime.Now.AddDays(-1), FirstName = "", LastName = "" };
       var result = service.UpdatePerson(peronModel);
       result.Errors.Should().Contain(x => x.ErrorMessage.ToLower().Contains("lastname field is required"));
@@ -100,7 +101,7 @@ namespace Spaanjaars.ContactManager45.Tests.Frontend.Wcf
     public void CantUpdateNonExistentPerson()
     {
       var fakePeopleRepository = new FakePeopleRepository();
-      var service = new ContactManagerService(fakePeopleRepository, new FakeUnitOfWorkFactory());
+      var service = new ContactManagerService(fakePeopleRepository, new FakeUnitOfWorkFactory<ContactManagerContext>());
       var peronModel = new PersonModel { Id = -1, DateOfBirth = DateTime.Now.AddDays(-1), FirstName = "Something", LastName = "Something Else" };
       var result = service.UpdatePerson(peronModel);
       result.Errors.Should().Contain(x => x.ErrorMessage.ToLower().Contains("unknown person id"));
@@ -110,7 +111,7 @@ namespace Spaanjaars.ContactManager45.Tests.Frontend.Wcf
     public void DeleteDeletesCorrectPerson()
     {
       var fakePeopleRepository = new FakePeopleRepository();
-      var service = new ContactManagerService(fakePeopleRepository, new FakeUnitOfWorkFactory());
+      var service = new ContactManagerService(fakePeopleRepository, new FakeUnitOfWorkFactory<ContactManagerContext>());
       service.DeletePerson(24);
       fakePeopleRepository.DeletedPerson.Id.Should().Be(24);
     }
