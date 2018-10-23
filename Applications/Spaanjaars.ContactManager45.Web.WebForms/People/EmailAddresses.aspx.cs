@@ -5,6 +5,7 @@ using System.Web.ModelBinding;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Spaanjaars.ContactManager45.Model;
+using Spaanjaars.ContactManager45.Repositories.EF;
 using Spaanjaars.ContactManager45.Web.WebForms.Helpers;
 using Spaanjaars.Infrastructure;
 
@@ -14,7 +15,7 @@ namespace Spaanjaars.ContactManager45.Web.WebForms.People
   {
     public IQueryable<EmailAddress> ListEmailAddresses([QueryString("Id")] int personId)
     {
-      var repo = RepositoryHelpers.GetPeopleRepository();
+      var repo = RepositoryHelpers<ContactManagerContext>.GetPeopleRepository();
       var person = repo.FindById(personId, x => x.EmailAddresses);
       return person.EmailAddresses.AsQueryable();
     }
@@ -25,9 +26,9 @@ namespace Spaanjaars.ContactManager45.Web.WebForms.People
       {
         try
         {
-          using (RepositoryHelpers.GetUnitOfWorkFactory().Create())
+          using (RepositoryHelpers<ContactManagerContext>.GetUnitOfWorkFactory().Create())
           {
-            var repo = RepositoryHelpers.GetPeopleRepository();
+            var repo = RepositoryHelpers<ContactManagerContext>.GetPeopleRepository();
             var person = repo.FindById(personId, x => x.EmailAddresses);
             var userAddress = new EmailAddress { OwnerId = personId };
             TryUpdateModel(userAddress);
@@ -50,9 +51,9 @@ namespace Spaanjaars.ContactManager45.Web.WebForms.People
       {
         try
         {
-          using (RepositoryHelpers.GetUnitOfWorkFactory().Create())
+          using (RepositoryHelpers<ContactManagerContext>.GetUnitOfWorkFactory().Create())
           {
-            var repo = RepositoryHelpers.GetPeopleRepository();
+            var repo = RepositoryHelpers<ContactManagerContext>.GetPeopleRepository();
             var person = repo.FindById(personId, x => x.EmailAddresses);
             EmailAddress userAddress = person.EmailAddresses.Single(x => x.Id == id);
             TryUpdateModel(userAddress);
@@ -72,9 +73,9 @@ namespace Spaanjaars.ContactManager45.Web.WebForms.People
 
     public void DeleteEmailAddress([QueryString("Id")] int personId, int id)
     {
-      using (RepositoryHelpers.GetUnitOfWorkFactory().Create())
+      using (RepositoryHelpers<ContactManagerContext>.GetUnitOfWorkFactory().Create())
       {
-        var repo = RepositoryHelpers.GetPeopleRepository();
+        var repo = RepositoryHelpers<ContactManagerContext>.GetPeopleRepository();
         var person = repo.FindById(personId, x => x.EmailAddresses);
         person.EmailAddresses.Remove(person.EmailAddresses.Single(x => x.Id == id));
       }

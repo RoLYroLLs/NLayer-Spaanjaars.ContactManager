@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using Spaanjaars.ContactManager45.Model;
 using Spaanjaars.ContactManager45.Model.Repositories;
+using Spaanjaars.ContactManager45.Repositories.EF;
 using Spaanjaars.ContactManager45.Web.Mvc.Models;
 using Spaanjaars.Infrastructure;
 
@@ -14,13 +15,13 @@ namespace Spaanjaars.ContactManager45.Web.Mvc.Controllers
   public class PeopleController : BaseController
   {
     private readonly IPeopleRepository _peopleRepository;
-    private readonly IUnitOfWorkFactory _unitOfWorkFactory;
+    private readonly IUnitOfWorkFactory<ContactManagerContext> _unitOfWorkFactory;
     const int PageSize = 10;
 
     /// <summary>
     /// Initializes a new instance of the PeopleController class.
     /// </summary>
-    public PeopleController(IPeopleRepository peopleRepository, IUnitOfWorkFactory unitOfWorkFactory)
+    public PeopleController(IPeopleRepository peopleRepository, IUnitOfWorkFactory<ContactManagerContext> unitOfWorkFactory)
     {
       _peopleRepository = peopleRepository;
       _unitOfWorkFactory = unitOfWorkFactory;

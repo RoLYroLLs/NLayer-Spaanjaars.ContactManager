@@ -6,7 +6,7 @@ namespace Spaanjaars.ContactManager45.Repositories.EF
   /// <summary>
   /// Defines a Unit of Work using an EF DbContext under the hood.
   /// </summary>
-  public class EFUnitOfWork<T> : IUnitOfWork where T : DbContext
+  public class EFUnitOfWork<T> : IUnitOfWork<T> where T : DbContext, new()
   {
     /// <summary>
     /// Initializes a new instance of the EFUnitOfWork class.

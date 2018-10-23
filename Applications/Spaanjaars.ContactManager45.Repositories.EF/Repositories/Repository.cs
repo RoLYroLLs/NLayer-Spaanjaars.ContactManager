@@ -11,7 +11,7 @@ namespace Spaanjaars.ContactManager45.Repositories.EF
   /// Serves as a generic base class for concrete repositories to support basic CRUD oprations on data in the system.
   /// </summary>
   /// <typeparam name="T">The type of entity this repository works with. Must be a class inheriting DomainEntity.</typeparam>
-  public abstract class Repository<T, K> : IRepository<T, int>, IDisposable where T : DomainEntity<int> where K : DbContext
+  public abstract class Repository<T, K> : IRepository<T, int>, IDisposable where T : DomainEntity<int> where K : DbContext, new()
   {
     /// <summary>
     /// Finds an item by its unique ID.

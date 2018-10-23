@@ -5,7 +5,7 @@ namespace Spaanjaars.Infrastructure
   /// <summary>
   /// Represents a unit of work
   /// </summary>
-  public interface IUnitOfWork : IDisposable
+  public interface IUnitOfWork<T> : IDisposable
   {
     /// <summary>
     /// Commits the changes to the underlying data store. 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
 using Spaanjaars.ContactManager45.Model;
+using Spaanjaars.ContactManager45.Repositories.EF;
 using Spaanjaars.ContactManager45.Web.WebForms.Helpers;
 
 namespace Spaanjaars.ContactManager45.Web.WebForms.People
@@ -33,7 +34,7 @@ namespace Spaanjaars.ContactManager45.Web.WebForms.People
 
     private void LoadAddress()
     {
-      var peopleRepository = RepositoryHelpers.GetPeopleRepository();
+      var peopleRepository = RepositoryHelpers<ContactManagerContext>.GetPeopleRepository();
       var person = peopleRepository.FindById(_personId);
       if (person != null)
       {
@@ -55,9 +56,9 @@ namespace Spaanjaars.ContactManager45.Web.WebForms.People
       }
       if (ModelState.IsValid)
       {
-        using (RepositoryHelpers.GetUnitOfWorkFactory().Create())
+        using (RepositoryHelpers<ContactManagerContext>.GetUnitOfWorkFactory().Create())
         {
-          var repository = RepositoryHelpers.GetPeopleRepository();
+          var repository = RepositoryHelpers<ContactManagerContext>.GetPeopleRepository();
           Person person = repository.FindById(_personId);
           switch (_contactType)
           {

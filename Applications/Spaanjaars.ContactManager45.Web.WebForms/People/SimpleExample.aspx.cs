@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.UI;
 using Spaanjaars.ContactManager45.Model;
+using Spaanjaars.ContactManager45.Repositories.EF;
 using Spaanjaars.ContactManager45.Web.WebForms.Helpers;
 
 namespace Spaanjaars.ContactManager45.Web.WebForms.People
@@ -9,33 +10,33 @@ namespace Spaanjaars.ContactManager45.Web.WebForms.People
   {
     public IEnumerable<Person> FindAll()
     {
-      return RepositoryHelpers.GetPeopleRepository().FindAll();
+      return RepositoryHelpers<ContactManagerContext>.GetPeopleRepository().FindAll();
     }
 
     public void InsertPerson()
     {
       var person = new Person();
       TryUpdateModel(person);
-      using (RepositoryHelpers.GetUnitOfWorkFactory().Create())
+      using (RepositoryHelpers<ContactManagerContext>.GetUnitOfWorkFactory().Create())
       {
-        RepositoryHelpers.GetPeopleRepository().Add(person);
+        RepositoryHelpers<ContactManagerContext>.GetPeopleRepository().Add(person);
       }
     }
 
     public void UpdatePerson(int id)
     {
-      using (RepositoryHelpers.GetUnitOfWorkFactory().Create())
+      using (RepositoryHelpers<ContactManagerContext>.GetUnitOfWorkFactory().Create())
       {
-        var person = RepositoryHelpers.GetPeopleRepository().FindById(id);
+        var person = RepositoryHelpers<ContactManagerContext>.GetPeopleRepository().FindById(id);
         TryUpdateModel(person);
       }
     }
 
     public void DeletePerson(int id)
     {
-      using (RepositoryHelpers.GetUnitOfWorkFactory().Create())
+      using (RepositoryHelpers<ContactManagerContext>.GetUnitOfWorkFactory().Create())
       {
-        RepositoryHelpers.GetPeopleRepository().Remove(id);
+        RepositoryHelpers<ContactManagerContext>.GetPeopleRepository().Remove(id);
       }
     }
   }

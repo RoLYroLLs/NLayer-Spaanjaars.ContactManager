@@ -31,7 +31,7 @@ namespace Spaanjaars.ContactManager45.Web.Mvc.DependencyResolution
           scan.AssembliesFromApplicationBaseDirectory();
           scan.WithDefaultConventions();
         });
-        scanner.For<IUnitOfWorkFactory>().Use<EFUnitOfWorkFactory>();
+        scanner.For(typeof(IUnitOfWorkFactory<>)).Use(typeof(EFUnitOfWorkFactory<>));
       });
       return ObjectFactory.Container;
     }

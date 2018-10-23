@@ -5,6 +5,7 @@ using System.Web.ModelBinding;
 using System.Web.UI.WebControls;
 using Spaanjaars.ContactManager45.Model;
 using System.Web.UI;
+using Spaanjaars.ContactManager45.Repositories.EF;
 using Spaanjaars.ContactManager45.Web.WebForms.Helpers;
 using Spaanjaars.Infrastructure;
 
@@ -14,7 +15,7 @@ namespace Spaanjaars.ContactManager45.Web.WebForms.People
   {
     public IQueryable<PhoneNumber> ListPhoneNumbers([QueryString("Id")] int personId)
     {
-      var repo = RepositoryHelpers.GetPeopleRepository();
+      var repo = RepositoryHelpers<ContactManagerContext>.GetPeopleRepository();
       var person = repo.FindById(personId, x => x.PhoneNumbers);
       return person.PhoneNumbers.AsQueryable();
     }
@@ -25,9 +26,9 @@ namespace Spaanjaars.ContactManager45.Web.WebForms.People
       {
         try
         {
-          using (RepositoryHelpers.GetUnitOfWorkFactory().Create())
+          using (RepositoryHelpers<ContactManagerContext>.GetUnitOfWorkFactory().Create())
           {
-            var repo = RepositoryHelpers.GetPeopleRepository();
+            var repo = RepositoryHelpers<ContactManagerContext>.GetPeopleRepository();
             var person = repo.FindById(personId, x => x.PhoneNumbers);
             var userNumber = new PhoneNumber { OwnerId = personId };
             TryUpdateModel(userNumber);
@@ -50,9 +51,9 @@ namespace Spaanjaars.ContactManager45.Web.WebForms.People
       {
         try
         {
-          using (RepositoryHelpers.GetUnitOfWorkFactory().Create())
+          using (RepositoryHelpers<ContactManagerContext>.GetUnitOfWorkFactory().Create())
           {
-            var repo = RepositoryHelpers.GetPeopleRepository();
+            var repo = RepositoryHelpers<ContactManagerContext>.GetPeopleRepository();
             var person = repo.FindById(personId, x => x.PhoneNumbers);
             PhoneNumber userNumber = person.PhoneNumbers.Single(x => x.Id == id);
             TryUpdateModel(userNumber);
@@ -72,9 +73,9 @@ namespace Spaanjaars.ContactManager45.Web.WebForms.People
 
     public void DeletePhoneNumber([QueryString("Id")] int personId, int id)
     {
-      using (RepositoryHelpers.GetUnitOfWorkFactory().Create())
+      using (RepositoryHelpers<ContactManagerContext>.GetUnitOfWorkFactory().Create())
       {
-        var repo = RepositoryHelpers.GetPeopleRepository();
+        var repo = RepositoryHelpers<ContactManagerContext>.GetPeopleRepository();
         var person = repo.FindById(personId, x => x.PhoneNumbers);
         person.PhoneNumbers.Remove(person.PhoneNumbers.Single(x => x.Id == id));
       }

@@ -8,7 +8,7 @@ namespace Spaanjaars.ContactManager45.Repositories.EF
   /// <summary>
   /// A concrete repository to work with people in the system.
   /// </summary>
-  public class PeopleRepository : Repository<Person>, IPeopleRepository
+  public class PeopleRepository : Repository<Person, ContactManagerContext>, IPeopleRepository
   {
     /// <summary>
     /// Gets a list of all the people whose last name exactly matches the search string.
@@ -17,7 +17,7 @@ namespace Spaanjaars.ContactManager45.Repositories.EF
     /// <returns>An IEnumerable of Person with the matching people.</returns>
     public IEnumerable<Person> FindByLastName(string lastName)
     {
-      return DataContextFactory.GetDataContext().Set<Person>().Where(x => x.LastName == lastName);
+      return DataContextFactory<ContactManagerContext>.GetDataContext().Set<Person>().Where(x => x.LastName == lastName);
     }
   }
 }

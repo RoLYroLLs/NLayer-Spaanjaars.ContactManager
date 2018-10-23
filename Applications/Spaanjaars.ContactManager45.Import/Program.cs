@@ -43,7 +43,7 @@ namespace Spaanjaars.ContactManager.Import
         int failed = 0;
         var stopwatch = new Stopwatch();
         stopwatch.Start();
-        using (var uow = new EFUnitOfWorkFactory().Create())
+        using (var uow = new EFUnitOfWorkFactory<ContactManagerContext>().Create())
         {
           foreach (ImportPerson importPerson in engine)
           {

@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using Spaanjaars.ContactManager45.Model;
 using Spaanjaars.ContactManager45.Model.Repositories;
+using Spaanjaars.ContactManager45.Repositories.EF;
 using Spaanjaars.ContactManager45.Web.Mvc.Models;
 using Spaanjaars.Infrastructure;
 
@@ -11,12 +12,12 @@ namespace Spaanjaars.ContactManager45.Web.Mvc.Controllers
   public class AddressesController : Controller
   {
     private readonly IPeopleRepository _peopleRepository;
-    private readonly IUnitOfWorkFactory _unitOfWorkFactory;
+    private readonly IUnitOfWorkFactory<ContactManagerContext> _unitOfWorkFactory;
 
     /// <summary>
     /// Initializes a new instance of the AddressesController class.
     /// </summary>
-    public AddressesController(IPeopleRepository peopleRepository, IUnitOfWorkFactory unitOfWorkFactory)
+    public AddressesController(IPeopleRepository peopleRepository, IUnitOfWorkFactory<ContactManagerContext> unitOfWorkFactory)
     {
       _peopleRepository = peopleRepository;
       _unitOfWorkFactory = unitOfWorkFactory;

@@ -15,7 +15,7 @@ namespace Spaanjaars.ContactManager45.Web.Wcf.StructureMap
           scan.AssembliesFromApplicationBaseDirectory();
           scan.WithDefaultConventions();
         });
-        scanner.For<IUnitOfWorkFactory>().Use<EFUnitOfWorkFactory>();
+        scanner.For(typeof(IUnitOfWorkFactory<>)).Use(typeof(IUnitOfWorkFactory<>));
       });
     }
   }

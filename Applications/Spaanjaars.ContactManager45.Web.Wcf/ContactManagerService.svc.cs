@@ -6,6 +6,7 @@ using AutoMapper;
 using NLog;
 using Spaanjaars.ContactManager45.Model;
 using Spaanjaars.ContactManager45.Model.Repositories;
+using Spaanjaars.ContactManager45.Repositories.EF;
 using Spaanjaars.Infrastructure;
 
 namespace Spaanjaars.ContactManager45.Web.Wcf
@@ -13,11 +14,11 @@ namespace Spaanjaars.ContactManager45.Web.Wcf
 public class ContactManagerService : IContactManagerService
 {
   private readonly IPeopleRepository _peopleRepository;
-  private readonly IUnitOfWorkFactory _unitOfWorkFactory;
+  private readonly IUnitOfWorkFactory<ContactManagerContext> _unitOfWorkFactory;
 
   private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-  public ContactManagerService(IPeopleRepository peopleRepository, IUnitOfWorkFactory unitOfWorkFactory)
+  public ContactManagerService(IPeopleRepository peopleRepository, IUnitOfWorkFactory<ContactManagerContext> unitOfWorkFactory)
   {
     if (peopleRepository == null)
     {
@@ -50,6 +51,7 @@ public class ContactManagerService : IContactManagerService
       person.Type = PersonType.Colleague;
 
       List<ValidationResult> errors = person.Validate().ToList();
+
    
       if (errors.Any())
       {
